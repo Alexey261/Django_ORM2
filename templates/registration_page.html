@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма регистрации</title>
+</head>
+<body>
+    {% if error != 'Привет, ' %}
+    <p><h3>{{error}}</h3></p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="login">Введите логин:</label>
+        <input type="text" id="login" name="login"  maxlength="30"  required value={{ user.0 }}>
+
+        <label for="password">Введите пароль:</label>
+        <input type="text" id="password" name="password"  minlength="8" maxlength="30"  required value={{ user.1 }}>
+
+        <label for="repeat_password">Повторите пароль:</label>
+        <input type="text" id="repeat_password" name="repeat_password"  minlength="8" maxlength="30" required value={{ user.2 }}>
+
+        <label for="age">Введите свой возраст:</label>
+        <input type="text" id="age" name="age"  maxlength="3" required value={{ user.3 }}>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    {% if error == 'Привет, ' %}
+        <p><h3>{{error}}{{ user.0 }}</h3> </p>
+    {% endif %}
+</body>
+</html>
